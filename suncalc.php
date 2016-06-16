@@ -39,9 +39,11 @@ define('J0', 0.0009);
 
 function toJulian($date) { return $date->getTimestamp() / daySec - 0.5 + J1970; }
 function fromJulian($j)  {
-    $dt = new DateTime("@".round(($j + 0.5 - J1970) * daySec));
-    $dt->setTimezone((new DateTime())->getTimezone());
-    return $dt;
+    if (!is_nan($j)) {
+        $dt = new DateTime("@".round(($j + 0.5 - J1970) * daySec));
+        $dt->setTimezone((new DateTime())->getTimezone());
+        return $dt;
+    }
 }
 function toDays($date)   { return toJulian($date) - J2000; }
 
