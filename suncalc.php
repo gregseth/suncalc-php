@@ -38,10 +38,10 @@ define('J0', 0.0009);
 
 
 function toJulian($date) { return $date->getTimestamp() / daySec - 0.5 + J1970; }
-function fromJulian($j)  {
+function fromJulian($j, $d)  {
     if (!is_nan($j)) {
         $dt = new DateTime("@".round(($j + 0.5 - J1970) * daySec));
-        $dt->setTimezone((new DateTime())->getTimezone());
+        $dt->setTimezone($d->getTimezone());
         return $dt;
     }
 }
@@ -212,8 +212,8 @@ class SunCalc {
         $Jnoon = solarTransitJ($ds, $M, $L);
 
         $result = [
-            'solarNoon'=> fromJulian($Jnoon),
-            'nadir'    => fromJulian($Jnoon - 0.5)
+            'solarNoon'=> fromJulian($Jnoon, $this->date),
+            'nadir'    => fromJulian($Jnoon - 0.5, $this->date)
         ];
 
         for ($i = 0, $len = count($this->times); $i < $len; $i += 1) {
@@ -222,8 +222,8 @@ class SunCalc {
             $Jset = getSetJ($time[0] * rad, $lw, $phi, $dec, $n, $M, $L);
             $Jrise = $Jnoon - ($Jset - $Jnoon);
 
-            $result[$time[1]] = fromJulian($Jrise);
-            $result[$time[2]] = fromJulian($Jset);
+            $result[$time[1]] = fromJulian($Jrise, $this->date);
+            $result[$time[2]] = fromJulian($Jset, $this->date);
         }
 
         return $result;
