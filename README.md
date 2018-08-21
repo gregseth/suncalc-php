@@ -17,7 +17,7 @@ in the [Twilight article on Wikipedia](http://en.wikipedia.org/wiki/Twilight).
 
 ```php
 // initialise library class with date and coordinates today's sunlight times for Paris
-$sc = new SunCalc(new DateTime(), 48.85, 2.35);
+$sc = new AurorasLive\SunCalc(new DateTime(), 48.85, 2.35);
 
 // format sunrise time from the DateTime object
 $sunTimes = $sc->getSunTimes();
@@ -37,7 +37,7 @@ $sunriseAzimuth = $sunrisePos->azimuth * 180 / M_PI;
 ### Sunlight times
 
 ```php
-SunCalc :: getSunTimes()
+AurorasLive\SunCalc :: getSunTimes()
 ```
 
 Returns an array with the following indexes (each is a `DateTime` object):
@@ -65,7 +65,7 @@ Returns an array with the following indexes (each is a `DateTime` object):
 ### Sun position
 
 ```php
-SunCalc :: getSunPosition(/*DateTime*/ $timeAndDate)
+AurorasLive\SunCalc :: getSunPosition(/*DateTime*/ $timeAndDate)
 ```
 
 Returns an object with the following properties:
@@ -79,7 +79,7 @@ Returns an object with the following properties:
 ### Moon position
 
 ```php
-SunCalc :: getMoonPosition(/*DateTime*/ $timeAndDate)
+AurorasLive\SunCalc :: getMoonPosition(/*DateTime*/ $timeAndDate)
 ```
 
 Returns an object with the following properties:
@@ -92,7 +92,7 @@ Returns an object with the following properties:
 ### Moon illumination
 
 ```php
-SunCalc :: getMoonIllumination()
+AurorasLive\SunCalc :: getMoonIllumination()
 ```
 
 Returns an array with the following properties:
@@ -118,7 +118,7 @@ Moon phase value should be interpreted like this:
 ### Moon rise and set times
 
 ```php
-SunCalc :: getMoonTimes($inUTC)
+AurorasLive\SunCalc :: getMoonTimes($inUTC)
 ```
 
 Returns an object with the following indexes:
@@ -132,6 +132,14 @@ By default, it will search for moon rise and set during local user's day (from 0
 If `$inUTC` is set to true, it will instead search the specified date from 0 to 24 UTC hours.
 
 ## Changelog
+
+#### 0.0.2 &mdash; 21 Aug, 2018
+
+- Make this into a class and add a composer.json file to allow use with things like Laravel
+
+#### 0.0.1 &mdash; 29 Jul, 2017
+
+- Preserve original timezone when passing in dates
 
 #### 0.0.0 &mdash; 30 Dec, 2015
 
