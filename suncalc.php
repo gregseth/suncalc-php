@@ -44,7 +44,7 @@ define('J0', 0.0009);
 function toJulian($date) { return $date->getTimestamp() / daySec - 0.5 + J1970; }
 function fromJulian($j, $d)  {
     if (!is_nan($j)) {
-        $dt = new DateTime("@".round(($j + 0.5 - J1970) * daySec));
+        $dt = new \DateTime("@".round(($j + 0.5 - J1970) * daySec));
         $dt->setTimezone($d->getTimezone());
         return $dt;
     }
@@ -275,7 +275,7 @@ class SunCalc {
 
     function getMoonTimes($inUTC=false) {
         $t = clone $this->date;
-        if ($inUTC) $t->setTimezone(new DateTimeZone('UTC'));
+        if ($inUTC) $t->setTimezone(new \DateTimeZone('UTC'));
 
         $t->setTime(0, 0, 0);
 
@@ -332,10 +332,9 @@ class SunCalc {
 
 // tests
 /*
-$test = new SunCalc(new DateTime(), 48.85, 2.35);
+$test = new SunCalc(new \DateTime(), 48.85, 2.35);
 print_r($test->getSunTimes());
 print_r($test->getMoonIllumination());
 print_r($test->getMoonTimes());
-print_r(getMoonPosition(new DateTime(), 48.85, 2.35));
+print_r(getMoonPosition(new \DateTime(), 48.85, 2.35));
 */
-?>
