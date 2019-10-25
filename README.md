@@ -24,7 +24,7 @@ $sunTimes = $sc->getSunTimes();
 $sunriseStr = $sunTimes['sunrise']->format('H:i');
 
 // get position of the sun (azimuth and altitude) at today's sunrise
-$sunrisePos = $sc->getPosition($sunTimes['sunrise']);
+$sunrisePos = $sc->getSunPosition($sunTimes['sunrise']);
 
 // get sunrise azimuth in degrees
 $sunriseAzimuth = $sunrisePos->azimuth * 180 / M_PI;
