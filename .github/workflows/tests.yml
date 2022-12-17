@@ -1,0 +1,21 @@
+name: tests
+
+on: [push]
+
+jobs:
+  project-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup PHP
+        uses: shivammathur/setup-php@189e8e6ec0f2daf4e4d26cdfeacdaf52d56b46a9
+        with:
+          php-version: '8.1'
+      - name: Install Dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+      - name: Run Code style
+        run: vendor/bin/phpcs -v
+      - name: Run PHPStan
+        run: vendor/bin/phpstan analyse
+      - name: Execute Unit tests via PHPUnit
+        run: vendor/bin/phpunit

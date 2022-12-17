@@ -4,13 +4,21 @@
 	"type": "library",
 	"license": "GPLv2",
 	"autoload": {
-		"files": [
-			"suncalc.php"
-		]
+		"psr-4": {
+			"AurorasLive\\": "src/"
+		}
 	},
 	"authors": [{
 		"name": "David Gray and Greg Seth",
 		"email": "david@auroras.live"
 	}],
-	"require": {}
+	"require": {
+		"php": "^8.0"
+	},
+	"require-dev": {
+		"symfony/var-dumper": "^6.0",
+		"phpunit/phpunit": "^9",
+		"squizlabs/php_codesniffer": "^3.7",
+		"phpstan/phpstan": "^1.9"
+	}
 }
