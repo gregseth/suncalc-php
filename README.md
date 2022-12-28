@@ -6,6 +6,9 @@ sunlight phases (times for sunrise, sunset, dusk, etc.),
 moon position and lunar phase for the given location and time,
 based on the JavaScript library created by [Vladimir Agafonkin](http://agafonkin.com/en) ([@mourner](https://github.com/mourner)).
 
+This repo is a fork from https://github.com/gregseth/suncalc-php and the code was refactor to be able to work better as package
+with Unit tests, code style and static analyses.
+
 Most calculations are based on the formulas given in the excellent Astronomy Answers articles
 about [position of the sun](http://aa.quae.nl/en/reken/zonpositie.html)
 and [the planets](http://aa.quae.nl/en/reken/hemelpositie.html).
@@ -17,27 +20,25 @@ in the [Twilight article on Wikipedia](http://en.wikipedia.org/wiki/Twilight).
 
 ```php
 // initialise library class with date and coordinates today's sunlight times for Paris
-$sc = new AurorasLive\SunCalc(new DateTime(), 48.85, 2.35);
+$sunCalc = new AurorasLive\SunCalc(new DateTime(), 48.85, 2.35);
 
 // format sunrise time from the DateTime object
-$sunTimes = $sc->getSunTimes();
+$sunTimes = $sunCalc->getSunTimes();
 $sunriseStr = $sunTimes['sunrise']->format('H:i');
 
 // get position of the sun (azimuth and altitude) at today's sunrise
-$sunrisePos = $sc->getPosition($sunTimes['sunrise']);
+$sunrisePos = $sunCalc->getPosition($sunTimes['sunrise']);
 
 // get sunrise azimuth in degrees
 $sunriseAzimuth = $sunrisePos->azimuth * 180 / M_PI;
 ```
-
-
 
 ## Reference
 
 ### Sunlight times
 
 ```php
-AurorasLive\SunCalc :: getSunTimes()
+AurorasLive\SunCalc::getSunTimes()
 ```
 
 Returns an array with the following indexes (each is a `DateTime` object):
@@ -65,7 +66,7 @@ Returns an array with the following indexes (each is a `DateTime` object):
 ### Sun position
 
 ```php
-AurorasLive\SunCalc :: getSunPosition(/*DateTime*/ $timeAndDate)
+AurorasLive\SunCalc::getSunPosition(/*DateTime*/ $timeAndDate)
 ```
 
 Returns an object with the following properties:
@@ -79,7 +80,7 @@ Returns an object with the following properties:
 ### Moon position
 
 ```php
-AurorasLive\SunCalc :: getMoonPosition(/*DateTime*/ $timeAndDate)
+AurorasLive\SunCalc::getMoonPosition(/*DateTime*/ $timeAndDate)
 ```
 
 Returns an object with the following properties:
@@ -92,7 +93,7 @@ Returns an object with the following properties:
 ### Moon illumination
 
 ```php
-AurorasLive\SunCalc :: getMoonIllumination()
+AurorasLive\SunCalc::getMoonIllumination()
 ```
 
 Returns an array with the following properties:
@@ -118,7 +119,7 @@ Moon phase value should be interpreted like this:
 ### Moon rise and set times
 
 ```php
-AurorasLive\SunCalc :: getMoonTimes($inUTC)
+AurorasLive\SunCalc::getMoonTimes($inUTC)
 ```
 
 Returns an object with the following indexes:
