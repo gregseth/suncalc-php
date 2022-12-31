@@ -6,9 +6,6 @@ sunlight phases (times for sunrise, sunset, dusk, etc.),
 moon position and lunar phase for the given location and time,
 based on the JavaScript library created by [Vladimir Agafonkin](http://agafonkin.com/en) ([@mourner](https://github.com/mourner)).
 
-This repo is a fork from https://github.com/gregseth/suncalc-php and the code was refactor to be able to work better as package
-with Unit tests, code style and static analyses.
-
 Most calculations are based on the formulas given in the excellent Astronomy Answers articles
 about [position of the sun](http://aa.quae.nl/en/reken/zonpositie.html)
 and [the planets](http://aa.quae.nl/en/reken/hemelpositie.html).

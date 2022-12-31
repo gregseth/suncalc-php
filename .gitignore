@@ -1,5 +1,2 @@
-.idea
 vendor/
-bin
-docker
-docker-compose.yml
+
